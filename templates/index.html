@@ -1,0 +1,331 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ============ HERO ============ -->
+<section class="hero container" id="home" aria-labelledby="hero-heading">
+  <canvas id="hero-particles" aria-hidden="true"></canvas>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span> Computer Science Undergraduate · AI/ML · Full-Stack Development</p>
+      <h1 id="hero-heading">Building intelligent solutions with <span class="grad">code and curiosity.</span></h1>
+      <p class="typing-line" aria-live="off"><span class="sr-only">Focus areas:&nbsp;</span><span id="typing" aria-hidden="true"></span><span class="caret" aria-hidden="true">|</span></p>
+      <noscript><p class="typing-line">AI/ML · Flask · React · IoT · Data-driven apps</p></noscript>
+      <p class="lede">I'm <strong>Harsh Kumar Chaubey</strong>, a B.Tech CSE (AI/ML) student at NIST University, Berhampur. I build practical web apps, data-driven tools, and IoT prototypes with Python, Flask, React, JavaScript, SQL, and MongoDB.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">Explore Projects</a>
+        <a class="btn btn-ghost" href="#contact">Contact Me</a>
+        <a class="btn btn-ghost btn-social" href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.15c0 .3.21.67.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="btn btn-ghost btn-social" href="{{ profile.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+        <!-- Optional resume: add static/files/resume.pdf, then uncomment:
+        <a class="btn btn-ghost" href="{{ url_for('static', filename='files/resume.pdf') }}" target="_blank" rel="noopener noreferrer">View Resume</a>
+        -->
+      </div>
+      <ul class="hero-meta">
+        <li>
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+          Garhwa, Jharkhand, India
+        </li>
+        <li><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></li>
+      </ul>
+      <ul class="social-row" aria-label="Social profiles">
+        <li>
+          <a href="{{ profile.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)">
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)">
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.15c0 .3.21.67.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+            <span>GitHub</span>
+          </a>
+        </li>
+        <li><a href="mailto:{{ profile.email }}" aria-label="Email Harsh">Email</a></li>
+      </ul>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-frame">
+        <img src="{{ url_for('static', filename='images/image.png') }}" alt="Portrait of Harsh Kumar Chaubey" width="587" height="798" fetchpriority="high" />
+      </div>
+      <dl class="photo-card glass">
+        <div><dt>Degree</dt><dd>B.Tech CSE (AI/ML), 2024–2028</dd></div>
+        <div><dt>Focus</dt><dd>AI/ML · Full-Stack · IoT</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section container" id="about" aria-labelledby="about-heading">
+  <p class="section-eyebrow">About</p>
+  <h2 id="about-heading">Engineer in progress, builder by habit.</h2>
+  <p class="section-lede">I'm a Computer Science and Engineering undergraduate specializing in AI/ML, with hands-on experience in software development, web applications, IoT, and data-driven problem-solving. I enjoy building practical solutions using Python, Flask, React, JavaScript, SQL, and MongoDB, and I'm continuing to grow my skills through projects, training, and collaborative challenges.</p>
+  <div class="card-grid-4">
+    <article class="glass card reveal"><h3>AI / ML</h3><p>Fundamentals, Pandas, Scikit-learn — applied to practical problem-solving tasks.</p></article>
+    <article class="glass card reveal"><h3>Full-Stack Web</h3><p>Flask + REST APIs on the backend, HTML/CSS/JS + React on the frontend, MongoDB for data.</p></article>
+    <article class="glass card reveal"><h3>Data-Driven Apps</h3><p>CRUD systems, automation, and clean, maintainable backend structure.</p></article>
+    <article class="glass card reveal"><h3>IoT</h3><p>Sensors, microcontrollers, and real-time control — e.g. smart fan automation.</p></article>
+  </div>
+  <div class="about-strip glass reveal">
+    <div><strong>NIST University</strong><span>B.Tech CSE (AI/ML) · Berhampur, Odisha · 2024–2028</span></div>
+    <div><strong>Languages</strong><span>English, Hindi</span></div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="section container" id="experience" aria-labelledby="exp-heading">
+  <p class="section-eyebrow">Experience &amp; Training</p>
+  <h2 id="exp-heading">Where I've learned by doing.</h2>
+  <ol class="timeline">
+    <li class="timeline-item glass reveal">
+      <p class="t-date">June 2026 – July 2026</p>
+      <h3>IT Intern — Aditya Birla Grasim Industries Limited, IT Department</h3>
+      <ul>
+        <li>Gained practical exposure to IT workflows and a professional industry environment.</li>
+        <li>Chemical Division, Rehla — project: Employee IT Helpdesk and Management System.</li>
+      </ul>
+      <p class="t-tags"><span>Industry</span><span>IT Workflows</span></p>
+      <p class="cert-row">
+        <button class="btn btn-ghost btn-small cert-btn" type="button"
+          data-cert-src="{{ url_for('certificate_file', filename='Aditya Birla Certificate.png') }}"
+          data-cert-title="IT Internship Certificate — Aditya Birla Grasim Industries Limited"
+          data-cert-type="image"
+          aria-label="View IT internship certificate from Aditya Birla Grasim Industries (opens viewer)">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg>
+          <span>View Certificate</span>
+        </button>
+      </p>
+    </li>
+    <li class="timeline-item glass reveal">
+      <p class="t-date">30-day training</p>
+      <h3>AI &amp; Machine Learning Training — KODACY in collaboration with SPACE</h3>
+      <ul>
+        <li>Gained hands-on exposure to AI/ML concepts.</li>
+        <li>Applied AI/ML concepts to practical problem-solving tasks.</li>
+      </ul>
+      <p class="t-tags"><span>AI/ML</span><span>Python</span></p>
+      <p class="cert-row">
+        <button class="btn btn-ghost btn-small cert-btn" type="button"
+          data-cert-src="{{ url_for('certificate_file', filename='Kodacy Certificate.png') }}"
+          data-cert-title="AI &amp; Machine Learning Training Certificate — KODACY × SPACE"
+          data-cert-type="pdf"
+          aria-label="View AI and Machine Learning training certificate from KODACY (opens viewer)">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg>
+          <span>View Certificate</span>
+        </button>
+      </p>
+    </li>
+    <li class="timeline-item glass reveal">
+      <p class="t-date">June 2025 – July 2025</p>
+      <h3>IoT &amp; Mechatronics Training — NIST University</h3>
+      <ul>
+        <li>Built a smart fan control system using real-time temperature and humidity data to automatically adjust fan speed.</li>
+        <li>Learned about IoT architecture, sensor integration, microcontrollers, actuators, wireless communication, and real-time data collection.</li>
+      </ul>
+      <p class="t-tags"><span>IoT</span><span>Sensors</span><span>Microcontrollers</span></p>
+      <p class="cert-row">
+        <button class="btn btn-ghost btn-small cert-btn" type="button"
+          data-cert-src="{{ url_for('certificate_file', filename='NIST University Certificate.png') }}"
+          data-cert-title="Basics of IoT and Mechatronics Certificate — NIST University"
+          data-cert-type="image"
+          aria-label="View Basics of IoT and Mechatronics certificate from NIST University (opens viewer)">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg>
+          <span>View Certificate</span>
+        </button>
+      </p>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="section container" id="projects" aria-labelledby="proj-heading">
+  <p class="section-eyebrow">Projects</p>
+  <h2 id="proj-heading">Selected work.</h2>
+  <p class="section-lede">Real builds only — no fabricated repos, demos, or metrics. Links appear only where a real URL exists.</p>
+  <div class="proj-grid">
+    <article class="glass card proj reveal">
+      <p class="proj-kicker">Hackathon · Frontend Developer</p>
+      <h3>Smart India Hackathon 2025 — Internal Round Qualifier</h3>
+      <p>Prototype for real-time public transportation tracking.</p>
+      <ul>
+        <li>Built a prototype for real-time public transportation tracking using HTML, CSS, and JavaScript.</li>
+        <li>Used Leaflet for interactive map visualization and Tailwind CSS for responsive UI.</li>
+      </ul>
+      <p class="t-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Leaflet</span><span>Tailwind CSS</span></p>
+    </article>
+    <article class="glass card proj reveal">
+      <p class="proj-kicker">Full-Stack Web App</p>
+      <h3>Hospital Management System</h3>
+      <p>System to manage patients, doctors, and appointments.</p>
+      <ul>
+        <li>Built a system to manage patients, doctors, and appointments.</li>
+        <li>Implemented REST APIs and CRUD operations for data handling and automation.</li>
+        <li>Designed a responsive interface and maintainable backend structure.</li>
+      </ul>
+      <p class="t-tags"><span>Flask</span><span>Python</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>MongoDB</span></p>
+    </article>
+    <article class="glass card proj reveal">
+      <p class="proj-kicker">IoT Prototype</p>
+      <h3>Smart Fan Control System</h3>
+      <p>Automatic fan-speed control from live environment readings.</p>
+      <ul>
+        <li>Built a prototype that uses real-time temperature and humidity readings to adjust fan speed automatically.</li>
+      </ul>
+      <p class="t-tags"><span>IoT</span><span>Sensors</span><span>Microcontrollers</span></p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ GITHUB LIVE ============ -->
+<section class="section container" id="github" aria-labelledby="github-heading">
+  <p class="section-eyebrow">Open Source</p>
+  <h2 id="github-heading">Live from GitHub.</h2>
+  <p class="section-lede">Public profile and repositories fetched live via the GitHub API — always up to date, never hand-copied.</p>
+  <div id="github-profile" class="glass card gh-profile reveal" hidden></div>
+  <div id="github-status" role="status" aria-live="polite">
+    <div class="gh-skeleton-grid" id="github-loading" aria-label="Loading GitHub repositories">
+      <div class="glass card gh-skeleton"><span></span><span></span><span></span></div>
+      <div class="glass card gh-skeleton"><span></span><span></span><span></span></div>
+      <div class="glass card gh-skeleton"><span></span><span></span><span></span></div>
+    </div>
+    <div class="glass card gh-error" id="github-error" hidden>
+      <h3>Couldn't load live repositories</h3>
+      <p id="github-error-msg">GitHub is unreachable right now.</p>
+      <div class="cta-row">
+        <button class="btn btn-ghost" id="github-retry" type="button">Try again</button>
+        <a class="btn btn-primary" href="{{ profile.github }}" target="_blank" rel="noopener noreferrer">View GitHub profile</a>
+      </div>
+    </div>
+  </div>
+  <div class="proj-grid gh-grid" id="github-repos"></div>
+  <noscript><p class="section-lede"><a href="{{ profile.github }}" target="_blank" rel="noopener noreferrer">View my GitHub profile and repositories</a> (JavaScript required for the live feed).</p></noscript>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section container" id="skills" aria-labelledby="skills-heading">
+  <p class="section-eyebrow">Skills</p>
+  <h2 id="skills-heading">A practical, honest toolkit.</h2>
+  <div class="skills-grid">
+    <article class="glass card reveal"><h3>Languages</h3><p class="t-tags"><span>Python</span><span>SQL</span><span>JavaScript</span></p></article>
+    <article class="glass card reveal"><h3>Web Development</h3><p class="t-tags"><span>HTML</span><span>CSS</span><span>React.js</span><span>Flask</span><span>REST APIs</span></p></article>
+    <article class="glass card reveal"><h3>Database</h3><p class="t-tags"><span>MongoDB</span></p></article>
+    <article class="glass card reveal"><h3>AI/ML &amp; Data</h3><p class="t-tags"><span>AI/ML fundamentals</span><span>Pandas</span><span>Scikit-learn</span></p></article>
+    <article class="glass card reveal"><h3>Core CS</h3><p class="t-tags"><span>Data Structures &amp; Algorithms</span><span>Computer Networking</span></p></article>
+    <article class="glass card reveal"><h3>IoT</h3><p class="t-tags"><span>Sensors</span><span>Microcontrollers</span><span>Automation</span></p></article>
+  </div>
+</section>
+
+<!-- ============ CERTIFICATIONS ============ -->
+<section class="section container" id="certifications" aria-labelledby="cert-heading">
+  <p class="section-eyebrow">Certifications</p>
+  <h2 id="cert-heading">Credentials.</h2>
+  <ul class="cert-grid">
+    <li class="glass card reveal"><strong>Generative AI Professional</strong><span>Oracle Cloud Infrastructure</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='Oracel GenAI.png') }}" data-cert-title="Generative AI Professional Certificate — Oracle Cloud Infrastructure" data-cert-type="image" aria-label="View Generative AI Professional certificate from Oracle (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>Data Analytics Job Simulation</strong><span>Deloitte</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='Deloitte.png') }}" data-cert-title="Data Analytics Job Simulation Certificate — Deloitte" data-cert-type="pdf" aria-label="View Data Analytics Job Simulation certificate from Deloitte (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>Introduction to AI</strong><span>KODACY</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='Kodacy Certificate.png') }}" data-cert-title="Introduction to AI Certificate — KODACY" data-cert-type="pdf" aria-label="View Introduction to AI certificate from KODACY (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>YUVA AI for ALL</strong><span>IndiaAI</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='IndiaAI.png') }}" data-cert-title="YUVA AI for ALL Certificate — IndiaAI" data-cert-type="pdf" aria-label="View YUVA AI for ALL certificate from IndiaAI (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>Basics of IoT and Mechatronics</strong><span>NIST University</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='NIST University Certificate.png') }}" data-cert-title="Basics of IoT and Mechatronics Certificate — NIST University" data-cert-type="image" aria-label="View Basics of IoT and Mechatronics certificate from NIST University (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>IT Internship — Employee IT Helpdesk and Management System</strong><span>Aditya Birla Grasim Industries Limited</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='Aditya Birla Certificate.png') }}" data-cert-title="IT Internship Certificate — Aditya Birla Grasim Industries Limited" data-cert-type="image" aria-label="View IT internship certificate from Aditya Birla Grasim Industries (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>Data Science for Beginners</strong><span>Board Infinity</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='BOORD.png') }}" data-cert-title="Data Science for Beginners Certificate — Board Infinity" data-cert-type="pdf" aria-label="View Data Science for Beginners certificate from Board Infinity (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>AI – Data Engineering Analyst</strong><span>Skill India Digital Hub / NASSCOM</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='Skill India.png') }}" data-cert-title="AI Data Engineering Analyst Certificate — Skill India Digital Hub / NASSCOM" data-cert-type="pdf" aria-label="View AI Data Engineering Analyst certificate from Skill India (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>Alpha (DSA with Java)</strong><span>Apna College</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='Apna Collage.png') }}" data-cert-title="Alpha DSA with Java Certificate — Apna College" data-cert-type="pdf" aria-label="View Alpha DSA with Java certificate from Apna College (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>Introduction to Artificial Intelligence</strong><span>LinkedIn Learning</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='Linkedin Learning.png') }}" data-cert-title="Introduction to Artificial Intelligence Certificate — LinkedIn Learning" data-cert-type="pdf" aria-label="View Introduction to Artificial Intelligence certificate from LinkedIn Learning (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>Career Explorer Job Simulation</strong><span>Forage</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='Forage.png') }}" data-cert-title="Career Explorer Job Simulation Certificate — Forage" data-cert-type="pdf" aria-label="View Career Explorer Job Simulation certificate from Forage (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>International Conference on Air Defence and Security</strong><span>ICADS-26</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='ICADS-26.png') }}" data-cert-title="ICADS-26 Conference Certificate — Air Defence and Security" data-cert-type="image" aria-label="View ICADS-26 conference certificate (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+    <li class="glass card reveal"><strong>India AI Impact Buildathon</strong><span>India AI Impact Summit 2026</span><button class="btn btn-ghost btn-small cert-btn" type="button" data-cert-src="{{ url_for('certificate_file', filename='AI Imapct Summit.png') }}" data-cert-title="India AI Impact Buildathon Certificate — India AI Impact Summit 2026" data-cert-type="image" aria-label="View India AI Impact Buildathon certificate (opens viewer)"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14.5-3.3-3.3 1.4-1.4 1.9 1.9 4.5-4.5 1.4 1.4-5.9 5.9Z"/></svg><span class="cert-btn-label">View Certificate</span></button></li>
+  </ul>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section container" id="contact" aria-labelledby="contact-heading">
+  <p class="section-eyebrow">Contact</p>
+  <h2 id="contact-heading">Let's talk.</h2>
+  <div class="contact-grid">
+    <div class="glass card reveal">
+      <h3>Direct links</h3>
+      <ul class="contact-list">
+        <li><span>Email</span><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></li>
+        <li>
+          <span>GitHub</span>
+          <a class="profile-link" href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile — github.com/harsh-chaubey (opens in new tab)">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.15c0 .3.21.67.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+            <span>github.com/harsh-chaubey</span>
+          </a>
+        </li>
+        <li>
+          <span>LinkedIn</span>
+          <a class="profile-link" href="{{ profile.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile — linkedin.com/in/harshkumarchaubey (opens in new tab)">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>
+            <span>linkedin.com/in/harshkumarchaubey</span>
+          </a>
+        </li>
+        <li><span>Location</span><span>{{ profile.location }}</span></li>
+      </ul>
+      <div class="cta-row profile-cta">
+        <a class="btn btn-ghost btn-social" href="{{ profile.github }}" target="_blank" rel="noopener noreferrer" aria-label="View GitHub profile (opens in new tab)">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.15c0 .3.21.67.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+          <span>View GitHub</span>
+        </a>
+        <a class="btn btn-ghost btn-social" href="{{ profile.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn (opens in new tab)">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>
+          <span>Connect on LinkedIn</span>
+        </a>
+        <a class="btn btn-primary" href="mailto:{{ profile.email }}?subject=Hello%20Harsh%20—%20from%20your%20portfolio">Email Me</a>
+      </div>
+    </div>
+    <div class="glass card reveal">
+      <h3>Send a message</h3>
+      <p class="form-note">Validated and stored <strong>locally on this server only</strong> — no email is sent automatically. For a guaranteed reply, please email directly via the button above.</p>
+      <form id="contact-form" method="post" action="{{ url_for('contact') }}" novalidate>
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="100" placeholder="Your name" />
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" required minlength="10" maxlength="2000" rows="5" placeholder="Tell me about the opportunity, project, or question…"></textarea>
+        </div>
+        <p class="form-error" id="cf-error" role="alert" hidden></p>
+        <button class="btn btn-ghost" type="submit">Submit (local demo)</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CERTIFICATE VIEWER MODAL ============ -->
+<div class="cert-modal" id="cert-modal" hidden>
+  <div class="cert-backdrop" id="cert-backdrop"></div>
+  <div class="cert-dialog glass" role="dialog" aria-modal="true" aria-labelledby="cert-title">
+    <div class="cert-header">
+      <h3 id="cert-title">Certificate</h3>
+      <button class="icon-btn cert-close" id="cert-close" type="button" aria-label="Close certificate viewer">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12 19 6.4 17.6 5 12 10.6 6.4 5Z"/></svg>
+      </button>
+    </div>
+    <div class="cert-body" id="cert-body">
+      <img class="cert-img" id="cert-img" src="" alt="" hidden />
+      <iframe class="cert-pdf" id="cert-pdf" src="" title="Certificate document" hidden></iframe>
+    </div>
+    <div class="cert-footer">
+      <div class="cert-zoom" id="cert-zoom-controls">
+        <button class="btn btn-ghost btn-small" id="cert-zoom-out" type="button" aria-label="Zoom certificate out">−</button>
+        <span class="cert-zoom-level" id="cert-zoom-level" aria-live="polite">100%</span>
+        <button class="btn btn-ghost btn-small" id="cert-zoom-in" type="button" aria-label="Zoom certificate in">+</button>
+        <button class="btn btn-ghost btn-small" id="cert-zoom-reset" type="button">Reset</button>
+      </div>
+      <a class="btn btn-primary btn-small" id="cert-full" href="#" target="_blank" rel="noopener noreferrer">Open full size</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
