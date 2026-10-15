@@ -20,6 +20,39 @@ GITHUB_USERNAME = os.environ.get("GITHUB_USERNAME", "harsh-chaubey")
 _GITHUB_CACHE: dict[str, object] = {"at": 0.0, "payload": None}
 GITHUB_CACHE_TTL = int(os.environ.get("GITHUB_CACHE_TTL", "300"))
 
+# Single source of truth for every certificate shown on the site.
+# "kind" must match the button's data-cert-type in templates/index.html:
+# image -> <img>, pdf -> <iframe>. Several files are PDF data despite
+# their .png names, so kind reflects real content, not the extension.
+CERTIFICATES: list[dict[str, str]] = [
+    {"file": "Oracel GenAI.png", "kind": "image", "title": "Generative AI Professional — Oracle Cloud Infrastructure"},
+    {"file": "Deloitte.png", "kind": "pdf", "title": "Data Analytics Job Simulation — Deloitte"},
+    {"file": "Kodacy Certificate.png", "kind": "pdf", "title": "Introduction to AI — KODACY"},
+    {"file": "IndiaAI.png", "kind": "pdf", "title": "YUVA AI for ALL — IndiaAI"},
+    {"file": "NIST University Certificate.png", "kind": "image", "title": "Basics of IoT and Mechatronics — NIST University"},
+    {"file": "Aditya Birla Certificate.png", "kind": "image", "title": "IT Internship — Aditya Birla Grasim Industries Limited"},
+    {"file": "BOORD.png", "kind": "pdf", "title": "Data Science for Beginners — Board Infinity"},
+    {"file": "Skill India.png", "kind": "pdf", "title": "AI – Data Engineering Analyst — Skill India Digital Hub / NASSCOM"},
+    {"file": "Apna Collage.png", "kind": "pdf", "title": "Alpha (DSA with Java) — Apna College"},
+    {"file": "Linkedin Learning.png", "kind": "pdf", "title": "Introduction to Artificial Intelligence — LinkedIn Learning"},
+    {"file": "Forage.png", "kind": "pdf", "title": "Career Explorer Job Simulation — Forage"},
+    {"file": "ICADS-26.png", "kind": "image", "title": "International Conference on Air Defence and Security — ICADS-26"},
+    {"file": "AI Imapct Summit.png", "kind": "image", "title": "India AI Impact Buildathon — India AI Impact Summit 2026"},
+]
+
+
+def _sniff_mime(path: Path) -> str:
+    """MIME type from magic bytes (extensions can't be trusted here)."""
+    with open(path, "rb") as f:
+        magic = f.read(5)
+    if magic.startswith(b"%PDF-"):
+        return "application/pdf"
+    if magic.startswith(b"\x89PNG"):
+        return "image/png"
+    if magic.startswith(b"\xff\xd8\xff"):
+        return "image/jpeg"
+    return "application/octet-stream"
+
 
 def _ssl_context() -> ssl.SSLContext:
     """SSL context using certifi's CA bundle when available."""
@@ -174,17 +207,35 @@ def create_app() -> Flask:
         target = (cert_dir / filename).resolve()
         if cert_dir not in target.parents or not target.is_file():
             return jsonify(ok=False, error="Certificate not found."), 404
-        with open(target, "rb") as f:
-            magic = f.read(5)
-        if magic.startswith(b"%PDF-"):
-            mimetype = "application/pdf"
-        elif magic.startswith(b"\x89PNG"):
-            mimetype = "image/png"
-        elif magic.startswith(b"\xff\xd8\xff"):
-            mimetype = "image/jpeg"
-        else:
-            mimetype = "application/octet-stream"
-        return send_file(target, mimetype=mimetype)
+        return send_file(target, mimetype=_sniff_mime(target))
+
+    @app.get("/api/certificates")
+    def certificates_manifest():
+        """Deployment self-check: status of every certificate asset.
+
+        Lets anyone verify production in seconds, e.g.
+        curl https://<app>.onrender.com/api/certificates
+        Each item reports whether the file exists on disk, its real MIME
+        type, and the exact URL the buttons use. "ok" is true only when
+        all 13 resolve.
+        """
+        cert_dir = BASE_DIR / "static" / "images" / "certificates"
+        items = []
+        for cert in CERTIFICATES:
+            target = cert_dir / cert["file"]
+            exists = target.is_file()
+            items.append(
+                {
+                    "file": cert["file"],
+                    "title": cert["title"],
+                    "kind": cert["kind"],
+                    "url": url_for("certificate_file", filename=cert["file"]),
+                    "ok": exists,
+                    "bytes": target.stat().st_size if exists else 0,
+                    "mimetype": _sniff_mime(target) if exists else None,
+                }
+            )
+        return jsonify(ok=all(i["ok"] for i in items), count=len(items), items=items)
 
     @app.post("/contact")
     def contact():

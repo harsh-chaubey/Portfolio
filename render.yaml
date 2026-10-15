@@ -1,0 +1,15 @@
+# Render Blueprint for the Flask portfolio.
+# First-time setup: Render Dashboard -> New -> Blueprint -> select this repo.
+# Afterwards every push to main auto-deploys. Existing manual service:
+# either migrate to this Blueprint or mirror these exact settings
+# (build/start commands + health check path) in the service dashboard.
+services:
+  - type: web
+    name: harsh-portfolio
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2
+    healthCheckPath: /healthz
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true

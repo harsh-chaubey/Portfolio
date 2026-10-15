@@ -75,6 +75,13 @@ Health check: <http://127.0.0.1:5000/healthz>
   viewer instead of a broken image.
 - Certificate responses allow same-origin framing (`SAMEORIGIN`) so PDF
   previews render inside the modal; all other pages stay `DENY`.
+- `GET /api/certificates` lists all 13 certificates with their URLs,
+  real MIME types, and per-file `ok` status — use it to verify any
+  deployment: `curl https://<app>.onrender.com/api/certificates`.
+  If any item reports `"ok": false` after a deploy, the Render service
+  is running an older commit: Dashboard -> service -> Manual Deploy ->
+  Clear build cache & deploy, then hard-refresh the browser
+  (Ctrl/Cmd+Shift+R) to drop cached failed responses.
 - Each Experience & Training card has a **View Certificate** button that
   opens a modal viewer on the same page: close button, click-outside and
   `Escape` to close, focus trap + focus restore, zoom controls for
